@@ -1,17 +1,20 @@
 import React, { Component } from "react";
+import { useState } from "react";
 import { Modal } from "./Modal";
 
 export const ImageGallery =(props)=> {
   
   
     const { images, error} = props 
- 
+//  console.log(images)
     return (
       <div>
       
         {error && <h2>{" Please try again" }</h2>}
     
-      {images && <ul className="ImageGallery">{images.map(item => (
+        {images && <ul className="ImageGallery">{images.map(item => 
+        
+          (
         
         <ImageGalleryItem key={item.id} item={item}  />))}</ul>}
       </div>
@@ -19,29 +22,24 @@ export const ImageGallery =(props)=> {
   
 }
 
-class ImageGalleryItem extends Component{
-  state = {
-    isOpen:false,
-   }
-  toggleModal = () => {
-    console.log("modal")
-    this.setState({
-      isOpen: !this.state.isOpen
-    })
+const ImageGalleryItem =({item})=>{
+  const [ isOpen, setIsOpen] = useState(false)
+  const toggleModal = () => {
+    // console.log("modal")
+    setIsOpen(prevS=> !prevS)
   }
-  
-  
-  render() {
-    const {webformatURL, largeImageURL, tags} = this.props.item
+
+    // console.log(item)
+    const {webformatURL, largeImageURL, tags} = item
    
     return (
     
     <li className="ImageGalleryItem" >
-      <img className="ImageGalleryItem-image" src={webformatURL} alt={tags}  onClick={this.toggleModal}/>
+      <img className="ImageGalleryItem-image" src={webformatURL} alt={tags}  onClick={toggleModal}/>
       
-        {this.state.isOpen && <Modal srcImg={largeImageURL} tags={tags} onClose={ this.toggleModal} />}
+        {isOpen && <Modal srcImg={largeImageURL} tags={tags} onClose={toggleModal} />}
 </li>
-  )}}
+  )}
  
 
 

@@ -5,7 +5,9 @@ import toast from 'react-hot-toast';
 axios.defaults.baseURL = `https://pixabay.com/api/`;
       
 export const fetchGallery = async (query, page) => {
+    // console.log(query, page)
     const responce = await axios.get(`?key=${KEY}&q=${query}&orientation=horizontal&safesearch=true&image_type=photo&per_page=12&page=${page}`);
+    
     if (responce.data.hits.length > 0 )
     { return responce.data } else {
 
