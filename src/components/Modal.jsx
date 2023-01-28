@@ -1,12 +1,17 @@
 
 import { createPortal } from "react-dom"
-import React, { Component } from "react";
 import { useEffect } from "react";
 const modalRoot = document.querySelector('#modal-root')
 
 export const Modal =({onClose,srcImg, tags})=>
 { 
+  const  handleKeyD = e => {
+        if (e.code === 'Escape') {
+                
+        onClose()
+        }
 
+    }
 
 
     useEffect(() => {
@@ -20,13 +25,7 @@ export const Modal =({onClose,srcImg, tags})=>
 
     }, [])
 
-   const  handleKeyD = e => {
-        if (e.code === 'Escape') {
-                
-        onClose()
-        }
-
-    }
+ 
   const handleBackdropClick = e => {
             
      if (e.currentTarget === e.target) {
