@@ -25,7 +25,7 @@ export const ImageGallery =(props)=> {
 const ImageGalleryItem =({item})=>{
   const [ isOpen, setIsOpen] = useState(false)
   const toggleModal = () => {
-    // console.log("modal")
+    
     setIsOpen(prevS=> !prevS)
   }
 
